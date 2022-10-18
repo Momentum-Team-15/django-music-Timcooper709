@@ -16,7 +16,7 @@ class Album(models.Model):
     # (many=more than one)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True) 
-    favorite = models.BooleanField(default=False)   
+      
 
     def __str__(self):
         return f"{self.title} by {self.artist}"
@@ -26,5 +26,13 @@ class Artist(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+class Favorite(models.Model):
+    user = models.ForeignKey('User', related_name='favorites', on_delete=models.CASCADE, blank=True, null=True)
+    album = models.ForeignKey('Album', related_name='favorites', on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.user.username}"
+
 
 #class Favorite(models.Model):
