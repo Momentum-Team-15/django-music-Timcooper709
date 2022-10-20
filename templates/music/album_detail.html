@@ -2,9 +2,9 @@
 
 {% block content %}
 <h2> Album details</h2>
-<p>({ album.title})</p>
+<p>{{ album.title}}</p>
 
-<p>({ album.artist}) </p>
+<p>{{ album.artist}} </p>
 <img src="" alt="">
 
 {% for song in album.songs.all %}

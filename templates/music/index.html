@@ -6,7 +6,7 @@
     <h3>These are my albums</h3>
 
     {% for album in albums %}
-    <p><a href="{% url 'album_detail' pk=album.pk %}"> {{ album.title }}</a> by {{ album.artist }}</p>
+    <p class="album"><a href="{% url 'album_detail' pk=album.pk %}"> {{ album.title }}</a> by {{ album.artist }}</p>
 
     {% endfor %}
 

@@ -17,7 +17,7 @@ class Song(models.Model):
 
 class Album(models.Model):
     title = models.CharField(max_length=200)
-    artist = models.ForeignKey('Artist', on_delete=models.CASCADE,) 
+    artist = models.ForeignKey('Artist', on_delete=models.CASCADE, blank=True, null=True) 
     
     # ForeignKey represents a OZM relationship. The 'One' is 
     # the field and the 'Many' are from the class it is defined on.
