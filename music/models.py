@@ -14,6 +14,7 @@ class Album(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to="img/", blank=True, null=True) 
+    description = models.TextField(null=True, blank=True)
 
     
     def __str__(self):

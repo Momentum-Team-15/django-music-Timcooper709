@@ -1,10 +1,12 @@
 from django.shortcuts import redirect, render
+from .models import Album
 
 from music.forms import AlbumForm
 
 # Create your views here
 def index(request):
-    return render(request, 'music/index.html')
+    albums = Album.objects.all()
+    return render(request, 'music/index.html',{"albums":albums})
 
 def create_album(request):
     if request.method == 'POST':

@@ -1,7 +1,14 @@
 {% extends 'base.html' %} {% block content %}
-<h2>Django Music</h2>
+<h1>Django Music</h1>
 
 <a href="{% url 'create_album' %}">Add Album</a>
-<div></div>
+{% for album in albums %}
+<div>
+    <h3>{{ album.title }}</h3>
+       <img src="{{ album.image }}"> 
+        {{ album.artist }}
+        <button>Read More</button>
 
+</div>
+{% endfor %}
 {% endblock %} 
