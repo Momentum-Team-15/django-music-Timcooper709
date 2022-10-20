@@ -1,33 +1,21 @@
-from abc import update_abstractmethods
-from contextlib import nullcontext
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class User(AbstractUser):
-    pass
-
-class Song(models.Model):
-    name = models.CharField(max_length=200)
-    album = models.ForeignKey('Album', on_delete=models.CASCADE, related_name='songs')
-    song_file = models.FileField(null=True, blank=True)   
-
-    def __str__(self):
-        return self.name 
+    birthday = models.DateField(blank=True, null=True)
 
 
 class Album(models.Model):
     title = models.CharField(max_length=200)
     artist = models.ForeignKey('Artist', on_delete=models.CASCADE, blank=True, null=True) 
-    
     # ForeignKey represents a OZM relationship. The 'One' is 
     # the field and the 'Many' are from the class it is defined on.
     # (many=more than one)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True) 
-    album_cover = models.ImageField(upload_to='images/', blank=True, null=True)
-    
-      
+    updated_at = models.DateTimeField(auto_now=True)
+    image = models.ImageField(upload_to="img/", blank=True, null=True) 
 
+    
     def __str__(self):
         return f"{self.title} by {self.artist}"
 
@@ -37,9 +25,3 @@ class Artist(models.Model):
     def __str__(self):
         return f"{self.name}"
 
-class Playlist(models.Model):
-    user = models.ForeignKey('User', on_delete=models.CASCADE)
-    playlist_name = models.CharField(max_length=50)
-    song = models.ForeignKey('Song', on_delete=models.CASCADE)
-
-#class Favorite(models.Model):
