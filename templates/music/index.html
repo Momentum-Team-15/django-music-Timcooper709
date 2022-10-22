@@ -6,9 +6,11 @@
 <div>
     <h3>{{ album.title }}</h3>
     {{ album.artist }}
-    <button>Read More</button>
-    <button>Delete</button>
-    <button>Edit</button>
+    <a href="{% url 'album_detail' album.pk %}"><button>Read More</button></a> 
+    <a href="{% url 'delete_album' album.pk %}"><button>Delete</button></a> 
+    <a href="{% url 'edit_album' album.pk %}"><button>Edit</button></a> 
+    
+   
 
 </div>
 {% endfor %}

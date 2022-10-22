@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import Album
 
 from music.forms import AlbumForm
@@ -29,5 +29,29 @@ def create_album(request):
         # the form yet, render a blank means        
     return render(request, 'music/create_album.html', {'form': form})
 
-def album_detail(request):
-    albums = Album.objects.all()
+def album_detail(request,pk):
+    album = Album.objects.get(pk=pk)
+    return render(request, "music/album_detail.html", {"album":album})
+
+def delete_album(request,pk):
+    album = get_object_or_404(Album, pk=pk)
+    if request.method =="POST":
+        album.delete()
+        return redirect(to = "index") 
+    
+    return render(request, "music/delete_album.html", {"album":album}) 
+
+def edit_album(request,pk):
+    album = get_object_or_404(Album, pk=pk)
+    if request.method == 'GET':
+     form = AlbumForm(instance=album) 
+    else:
+        form = AlbumForm(data=request.POST, instance=album)
+        if form.is_valid():
+            form.save()
+            return redirect (to='index')
+
+    return render(request, "music/edit_album.html", {
+        "form":form,
+        "album":album
+    })             

@@ -18,10 +18,15 @@ from django.urls import path, include
 from music import views
 
 urlpatterns = [
+    path('__debug__/', include('debug_toolbar.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
+    
     path('', views.index, name="index"),
     path('album/new/', views.create_album, name="create_album"),
-    path('__debug__/', include('debug_toolbar.urls')),
+    path('album/<int:pk>/', views.album_detail, name="album_detail"),    
+    path('album/<int:pk>/delete', views.delete_album, name="delete_album"),  
+    path('album/<int:pk>/edit',views.edit_album, name="edit_album"),  
 ]
+
 
