@@ -22,9 +22,12 @@ def create_album(request):
             # instance of Album in the database
             # only need commit=False if you are going to add additional
             # data not on the form (like request.user)
-            return redirect("home")
+            return redirect("index")
     else:
         form = AlbumForm()
         # if user is visiting a page with GET request, not submitting
         # the form yet, render a blank means        
     return render(request, 'music/create_album.html', {'form': form})
+
+def album_detail(request):
+    albums = Album.objects.all()

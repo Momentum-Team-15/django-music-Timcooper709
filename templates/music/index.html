@@ -5,10 +5,11 @@
 {% for album in albums %}
 <div>
     <h3>{{ album.title }}</h3>
-       <img src="{{ album.image }}"> 
-        {{ album.artist }}
-        <button>Read More</button>
+    {{ album.artist }}
+    <button>Read More</button>
+    <button>Delete</button>
+    <button>Edit</button>
 
 </div>
 {% endfor %}
-{% endblock %} 
+{% endblock %}
